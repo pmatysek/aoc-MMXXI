@@ -39,21 +39,16 @@ private fun MutableList<Board>.markNumber(number: Int) =
 
 private fun List<Int>.markNumberInRow(number: Int) = this.map { if (it == number) -1 else it }
 
-private fun List<String>.getBingoBoards(): MutableList<List<List<Int>>> {
-    val boards = mutableListOf<List<List<Int>>>()
-    val input = this.toMutableList()
-    input.removeAt(0)
-    input.removeAt(0)
-
-    var board: MutableList<List<Int>> = mutableListOf()
-    for (line in input) {
-        if (line.isBlank()) {
-            boards.add(board)
-            board = mutableListOf()
-        } else {
-            board.add(line.split(" ").filter { it.isNotEmpty() }.map { it.toInt() })
-        }
-    }
-
-    return boards
-}
+private fun List<String>.getBingoBoards(): MutableList<Board> =
+    this
+        .drop(1)
+        .chunked(6)
+        .map { boardLines ->
+            boardLines.filter { line -> line.isNotBlank() }
+                .map { line ->
+                    line
+                        .split(" ")
+                        .filter { it.isNotBlank() }
+                        .map { it.toInt() }
+                }
+        }.toMutableList()
