@@ -11,14 +11,14 @@ fun main() {
         .mapValues { it.value.toLong() }
 
     for (i in 0 until NUMBER_OF_DAYS_TO_SIMULATE) {
-        lanternfishes = lanternfishes.simulateLaternfishDay()
+        lanternfishes = lanternfishes.simulateLateFishDay()
     }
 
-    println("Number of fishes after $NUMBER_OF_DAYS_TO_SIMULATE is: ${lanternfishes.values.sum()}")
+    println("Number of fishes after $NUMBER_OF_DAYS_TO_SIMULATE days is: ${lanternfishes.values.sum()}")
 }
 
 
-fun Map<Int, Long>.simulateLaternfishDay(): Map<Int, Long> {
+fun Map<Int, Long>.simulateLateFishDay(): Map<Int, Long> {
     val numberOfNewKids = this[0] ?: 0
     val newFishesMap = mutableMapOf<Int, Long>()
     for(i in 0..7){
