@@ -14,6 +14,6 @@ fun main() {
 }
 
 private fun calculateFuel(currentPosition: Int, targetPosition: Int): Int {
-    val n =abs(currentPosition - targetPosition)
-    return ((1 + n) * n)/2
+    val n = abs(currentPosition - targetPosition)
+    return ((1 + n) * n) / 2
 }
